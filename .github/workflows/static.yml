@@ -19,7 +19,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: github-pages
-          path: ./ # 根目录所有静态资源(html/css/js等)
+          path: ./static/ # 根目录所有静态资源(html/css/js等)
 
   deploy:
     needs: build
