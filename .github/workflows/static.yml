@@ -2,7 +2,7 @@ name: Deploy Pages
 
 concurrency:
   group: "pages"
-  cancel-in-progress: true # 取消正在运行的旧构建，只跑最新
+  cancel-in-progress: true
 
 on:
   push:
@@ -14,14 +14,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build site
-        run: npm install && npm run build
-
+      # 直接上传仓库根目录全部静态文件，不需要build
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: github-pages
-          path: ./dist
+          path: ./ # 根目录所有静态资源(html/css/js等)
 
   deploy:
     needs: build
